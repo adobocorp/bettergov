@@ -39,8 +39,18 @@ const Navbar: React.FC = () => {
   };
 
   const isActiveRoute = (href: string) => {
+    // Handle edge cases: null, undefined, or empty href
+    if (!href) return false;
+
+    // Normalize paths by removing trailing slashes
+    const normalizedPath = location.pathname.replace(/\/$/, '');
+    const normalizedHref = href.replace(/\/$/, '');
+
+    // Check exact match or if current path starts with href
     return (
-      location.pathname === href || location.pathname.startsWith(href + '/')
+      normalizedPath === normalizedHref ||
+      (normalizedHref !== '/' &&
+        normalizedPath.startsWith(normalizedHref + '/'))
     );
   };
 
