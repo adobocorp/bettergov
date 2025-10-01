@@ -479,18 +479,23 @@ const FloodControlProjects: React.FC = () => {
     }));
 
   const provinceOptions = useMemo(() => {
+    if (filters.Region === 'National Capital Region') {
+      const nationalCapitalRegion = provinceData.Province.filter(
+        item => item.regCode === '13'
+      );
+      const otherRegions = provinceData.Province.filter(item => !item.regCode);
+      return [...nationalCapitalRegion, ...otherRegions];
+    }
+
     if (filters.Region) {
       const regionId = regionData.Region.find(
         item => item.value === filters.Region
       )?.regCode;
       return provinceData.Province.filter(item => item.regCode === regionId);
     }
+
     return provinceData.Province;
   }, [filters.Region]);
-
-  useMemo(() => {
-    console.log(filters);
-  }, [filters]);
 
   const typeWorkPieData = typeOfWorkData.TypeofWork.sort(
     (a, b) => b.count - a.count
