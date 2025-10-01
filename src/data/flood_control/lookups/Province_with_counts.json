@@ -2,74 +2,110 @@
   "Province": [
     {
       "value": "ABRA",
+      "regCode": "14",
+      "provCode": "1401",
       "count": 105
     },
     {
       "value": "AGUSAN DEL NORTE",
+      "regCode": "16",
+      "provCode": "1602",
       "count": 89
     },
     {
       "value": "AGUSAN DEL SUR",
+      "regCode": "16",
+      "provCode": "1603",
       "count": 59
     },
     {
       "value": "AKLAN",
+      "regCode": "06",
+      "provCode": "0604",
       "count": 60
     },
     {
       "value": "ALBAY",
+      "regCode": "05",
+      "provCode": "0505",
       "count": 273
     },
     {
       "value": "ANTIQUE",
+      "regCode": "06",
+      "provCode": "0606",
       "count": 38
     },
     {
       "value": "APAYAO",
+      "regCode": "14",
+      "provCode": "1481",
       "count": 34
     },
     {
       "value": "AURORA",
+      "regCode": "03",
+      "provCode": "0377",
       "count": 64
     },
     {
       "value": "BASILAN",
+      "regCode": "15",
+      "provCode": "1507",
       "count": 10
     },
     {
       "value": "BATAAN",
+      "regCode": "03",
+      "provCode": "0308",
       "count": 98
     },
     {
       "value": "BATANES",
+      "regCode": "02",
+      "provCode": "0209",
       "count": 32
     },
     {
       "value": "BATANGAS",
+      "regCode": "04",
+      "provCode": "0410",
       "count": 190
     },
     {
       "value": "BENGUET",
+      "regCode": "14",
+      "provCode": "1411",
       "count": 79
     },
     {
       "value": "BILIRAN",
+      "regCode": "08",
+      "provCode": "0878",
       "count": 73
     },
     {
       "value": "BOHOL",
+      "regCode": "07",
+      "provCode": "0712",
       "count": 79
     },
     {
       "value": "BUKIDNON",
+      "regCode": "10",
+      "provCode": "1013",
       "count": 113
     },
     {
       "value": "BULACAN",
+      "regCode": "03",
+      "provCode": "0314",
       "count": 668
     },
     {
       "value": "CAGAYAN",
+      "regCode": "02",
+      "provCode": "0215",
       "count": 167
     },
     {
@@ -78,110 +114,163 @@
     },
     {
       "value": "CAMARINES NORTE",
+      "regCode": "05",
+      "provCode": "0516",
       "count": 97
     },
     {
       "value": "CAMARINES SUR",
+      "regCode": "05",
+      "provCode": "0517",
       "count": 252
     },
     {
       "value": "CAMIGUIN",
+      "regCode": "10",
+      "provCode": "1018",
       "count": 32
     },
     {
       "value": "CAPIZ",
+      "regCode": "06",
+      "provCode": "0619",
       "count": 24
     },
     {
       "value": "CATANDUANES",
+      "regCode": "05",
+      "provCode": "0520",
       "count": 46
     },
     {
       "value": "CAVITE",
+      "regCode": "04",
+      "provCode": "0421",
       "count": 192
     },
     {
       "value": "CEBU",
+      "regCode": "07",
+      "provCode": "0722",
       "count": 414
     },
     {
       "value": "CITY OF MANILA",
+      "regCode": "13",
+      "provCode": "1339",
       "count": 215
     },
     {
       "value": "COTABATO (NORTH COTABATO)",
+      "regCode": "12",
+      "provCode": "1247",
       "count": 68
     },
     {
       "value": "DAVAO DE ORO",
+      "regCode": "11",
       "count": 58
     },
     {
       "value": "DAVAO DEL NORTE",
+      "regCode": "11",
+      "provCode": "1123",
       "count": 35
     },
     {
       "value": "DAVAO DEL SUR",
+      "regCode": "11",
+      "provCode": "1124",
       "count": 185
     },
     {
       "value": "DAVAO OCCIDENTAL",
+      "regCode": "11",
+      "provCode": "1186",
       "count": 22
     },
     {
       "value": "DAVAO ORIENTAL",
+      "regCode": "11",
+      "provCode": "1125",
       "count": 60
     },
     {
       "value": "DINAGAT ISLANDS",
+      "regCode": "16",
+      "provCode": "1685",
       "count": 15
     },
     {
       "value": "EASTERN SAMAR",
+      "regCode": "08",
+      "provCode": "0826",
       "count": 22
     },
     {
       "value": "GUIMARAS",
+      "regCode": "06",
+      "provCode": "0679",
       "count": 8
     },
     {
       "value": "IFUGAO",
+      "regCode": "14",
+      "provCode": "1427",
       "count": 27
     },
     {
       "value": "ILOCOS NORTE",
+      "regCode": "01",
+      "provCode": "0128",
       "count": 224
     },
     {
       "value": "ILOCOS SUR",
+      "regCode": "01",
+      "provCode": "0129",
       "count": 148
     },
     {
       "value": "ILOILO",
+      "regCode": "06",
+      "provCode": "0630",
       "count": 168
     },
     {
       "value": "ISABELA",
+      "regCode": "02",
+      "provCode": "0231",
       "count": 341
     },
     {
       "value": "KALINGA",
+      "regCode": "14",
+      "provCode": "1432",
       "count": 63
     },
     {
       "value": "LA UNION",
+      "regCode": "01",
+      "provCode": "0133",
       "count": 167
     },
     {
       "value": "LAGUNA",
+      "regCode": "04",
+      "provCode": "0434",
       "count": 153
     },
     {
       "value": "LANAO DEL NORTE",
+      "regCode": "10",
+      "provCode": "1035",
       "count": 59
     },
     {
       "value": "LANAO DEL SUR",
+      "regCode": "15",
+      "provCode": "1536",
       "count": 13
     },
     {
@@ -190,14 +279,20 @@
     },
     {
       "value": "LEYTE",
+      "regCode": "08",
+      "provCode": "0837",
       "count": 262
     },
     {
       "value": "MAGUINDANAO DEL NORTE",
+      "regCode": "15",
+      "provCode": "1538",
       "count": 13
     },
     {
       "value": "MAGUINDANAO DEL SUR",
+      "regCode": "15",
+      "provCode": "1539",
       "count": 24
     },
     {
@@ -218,22 +313,32 @@
     },
     {
       "value": "MARINDUQUE",
+      "regCode": "17",
+      "provCode": "1740",
       "count": 68
     },
     {
       "value": "MASBATE",
+      "regCode": "05",
+      "provCode": "0541",
       "count": 69
     },
     {
       "value": "MISAMIS OCCIDENTAL",
+      "regCode": "10",
+      "provCode": "1042",
       "count": 33
     },
     {
       "value": "MISAMIS ORIENTAL",
+      "regCode": "10",
+      "provCode": "1043",
       "count": 181
     },
     {
       "value": "MOUNTAIN PROVINCE",
+      "regCode": "14",
+      "provCode": "1444",
       "count": 44
     },
     {
@@ -246,42 +351,62 @@
     },
     {
       "value": "NEGROS OCCIDENTAL",
+      "regCode": "06",
+      "provCode": "0645",
       "count": 208
     },
     {
       "value": "NEGROS ORIENTAL",
+      "regCode": "07",
+      "provCode": "0746",
       "count": 117
     },
     {
       "value": "NORTHERN SAMAR",
+      "regCode": "08",
+      "provCode": "0848",
       "count": 49
     },
     {
       "value": "NUEVA ECIJA",
+      "regCode": "03",
+      "provCode": "0349",
       "count": 163
     },
     {
       "value": "NUEVA VIZCAYA",
+      "regCode": "02",
+      "provCode": "0250",
       "count": 85
     },
     {
       "value": "OCCIDENTAL MINDORO",
+      "regCode": "17",
+      "provCode": "1751",
       "count": 101
     },
     {
       "value": "ORIENTAL MINDORO",
+      "regCode": "17",
+      "provCode": "1752",
       "count": 138
     },
     {
       "value": "PALAWAN",
+      "regCode": "17",
+      "provCode": "1753",
       "count": 83
     },
     {
       "value": "PAMPANGA",
+      "regCode": "03",
+      "provCode": "0354",
       "count": 292
     },
     {
       "value": "PANGASINAN",
+      "regCode": "01",
+      "provCode": "0155",
       "count": 313
     },
     {
@@ -302,6 +427,8 @@
     },
     {
       "value": "QUEZON",
+      "regCode": "04",
+      "provCode": "0456",
       "count": 129
     },
     {
@@ -310,18 +437,26 @@
     },
     {
       "value": "QUIRINO",
+      "regCode": "02",
+      "provCode": "0257",
       "count": 7
     },
     {
       "value": "RIZAL",
+      "regCode": "04",
+      "provCode": "0458",
       "count": 170
     },
     {
       "value": "ROMBLON",
+      "regCode": "17",
+      "provCode": "1759",
       "count": 76
     },
     {
       "value": "SAMAR (WESTERN SAMAR)",
+      "regCode": "08",
+      "provCode": "0860",
       "count": 57
     },
     {
@@ -330,38 +465,56 @@
     },
     {
       "value": "SARANGANI",
+      "regCode": "12",
+      "provCode": "1280",
       "count": 41
     },
     {
       "value": "SIQUIJOR",
+      "regCode": "07",
+      "provCode": "0761",
       "count": 4
     },
     {
       "value": "SORSOGON",
+      "regCode": "05",
+      "provCode": "0562",
       "count": 131
     },
     {
       "value": "SOUTH COTABATO",
+      "regCode": "12",
+      "provCode": "1263",
       "count": 86
     },
     {
       "value": "SOUTHERN LEYTE",
+      "regCode": "08",
+      "provCode": "0864",
       "count": 55
     },
     {
       "value": "SULTAN KUDARAT",
+      "regCode": "12",
+      "provCode": "1265",
       "count": 69
     },
     {
       "value": "SULU",
+      "regCode": "15",
+      "provCode": "1566",
       "count": 3
     },
     {
       "value": "SURIGAO DEL NORTE",
+      "regCode": "16",
+      "provCode": "1667",
       "count": 80
     },
     {
       "value": "SURIGAO DEL SUR",
+      "regCode": "16",
+      "provCode": "1668",
       "count": 68
     },
     {
@@ -370,6 +523,8 @@
     },
     {
       "value": "TARLAC",
+      "regCode": "03",
+      "provCode": "0369",
       "count": 258
     },
     {
@@ -378,18 +533,26 @@
     },
     {
       "value": "ZAMBALES",
+      "regCode": "03",
+      "provCode": "0371",
       "count": 73
     },
     {
       "value": "ZAMBOANGA DEL NORTE",
+      "regCode": "09",
+      "provCode": "0972",
       "count": 36
     },
     {
       "value": "ZAMBOANGA DEL SUR",
+      "regCode": "09",
+      "provCode": "0973",
       "count": 62
     },
     {
       "value": "ZAMBOANGA SIBUGAY",
+      "regCode": "09",
+      "provCode": "0983",
       "count": 25
     }
   ]

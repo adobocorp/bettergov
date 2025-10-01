@@ -11,7 +11,7 @@ import {
   UsersIcon,
   XIcon,
 } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { Configure, InstantSearch, useHits } from 'react-instantsearch';
@@ -463,7 +463,6 @@ const FloodControlProjects: React.FC = () => {
   const handleDropdownToggle = (dropdownName: string) => {
     setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
   };
-
   // Precalculated chart data for initial load without Meilisearch
   const yearlyChartData = infraYearData.InfraYear.sort((a, b) =>
     a.value.localeCompare(b.value)
@@ -478,6 +477,20 @@ const FloodControlProjects: React.FC = () => {
       name: item.value,
       Projects: item.count,
     }));
+
+  const provinceOptions = useMemo(() => {
+    if (filters.Region) {
+      const regionId = regionData.Region.find(
+        item => item.value === filters.Region
+      )?.regCode;
+      return provinceData.Province.filter(item => item.regCode === regionId);
+    }
+    return provinceData.Province;
+  }, [filters.Region]);
+
+  useMemo(() => {
+    console.log(filters);
+  }, [filters]);
 
   const typeWorkPieData = typeOfWorkData.TypeofWork.sort(
     (a, b) => b.count - a.count
@@ -657,7 +670,7 @@ const FloodControlProjects: React.FC = () => {
                   </label>
                   <FilterDropdown
                     name='Province'
-                    options={provinceData.Province}
+                    options={provinceOptions}
                     value={filters.Province}
                     onChange={value => handleFilterChange('Province', value)}
                     searchable
