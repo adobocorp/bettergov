@@ -99,9 +99,9 @@ const PhilippinesMap: React.FC = () => {
       const regionDetails: RegionData = {
         id: regionName,
         name: regionName,
-        // capital: props.capital,
-        // population: props.population,
-        // provinces: props.provinces,
+        capital: props.capital,
+        population: props.population,
+        provinces: props.provinces,
         loading: true,
       };
       setSelectedRegion(regionDetails);
