@@ -537,6 +537,12 @@ const FloodControlProjects: React.FC = () => {
       ...filters,
       [filterName]: value,
     };
+
+    //reset province when region is changed
+    if (filterName === 'Region') {
+      newFilters.Province = '';
+    }
+
     setFilters(newFilters);
 
     // Check if any filters are now applied

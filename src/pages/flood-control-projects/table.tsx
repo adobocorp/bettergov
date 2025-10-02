@@ -623,10 +623,17 @@ const FloodControlProjectsTable: React.FC = () => {
 
   // Handle filter change
   const handleFilterChange = (filterName: string, value: string) => {
-    setFilters(prev => ({
-      ...prev,
+    const newFilters = {
+      ...filters,
       [filterName]: value,
-    }));
+    };
+
+    //reset province when region is changed
+    if (filterName === 'Region') {
+      newFilters.Province = '';
+    }
+
+    setFilters(newFilters);
   };
 
   // Build filter string for Meilisearch
