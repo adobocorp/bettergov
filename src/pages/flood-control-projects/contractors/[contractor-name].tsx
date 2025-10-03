@@ -528,7 +528,7 @@ const ContractorDetail: React.FC = () => {
   const initialCenter: LatLngExpression = [12.8797, 121.774]; // Philippines center
   const initialZoom = 6;
 
-  // Function to calculate bounds from projects with coordinates
+  // function to calculate bounds from projects with coordinates
   const calculateBounds = (
     projects: FloodControlProject[]
   ): L.LatLngBounds | null => {
@@ -568,7 +568,7 @@ const ContractorDetail: React.FC = () => {
         mapRef.current.setView(initialCenter, initialZoom);
       }
     }
-  }, [mapProjects]);
+  }, [mapProjects, initialCenter, initialZoom]);
 
   useEffect(() => {
     if (contractorSlug) {
