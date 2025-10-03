@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
@@ -525,7 +525,9 @@ const ContractorDetail: React.FC = () => {
   const [mapProjects, setMapProjects] = useState<FloodControlProject[]>([]);
   const mapRef = useRef<L.Map>(null);
 
-  const initialCenter: LatLngExpression = [12.8797, 121.774]; // Philippines center
+  const initialCenter: LatLngExpression = useMemo(() => {
+    return [12.8797, 121.774];
+  }, []);
   const initialZoom = 6;
 
   // function to calculate bounds from projects with coordinates
