@@ -528,6 +528,48 @@ const ContractorDetail: React.FC = () => {
   const initialCenter: LatLngExpression = [12.8797, 121.774]; // Philippines center
   const initialZoom = 6;
 
+  // Function to calculate bounds from projects with coordinates
+  const calculateBounds = (
+    projects: FloodControlProject[]
+  ): L.LatLngBounds | null => {
+    const validProjects = projects.filter(project => {
+      if (!project.Latitude || !project.Longitude) return false;
+      const lat = parseFloat(project.Latitude);
+      const lng = parseFloat(project.Longitude);
+      return !isNaN(lat) && !isNaN(lng);
+    });
+
+    if (validProjects.length === 0) return null;
+
+    const lats = validProjects.map(p => parseFloat(p.Latitude!));
+    const lngs = validProjects.map(p => parseFloat(p.Longitude!));
+
+    const bounds = L.latLngBounds([
+      [Math.min(...lats), Math.min(...lngs)],
+      [Math.max(...lats), Math.max(...lngs)],
+    ]);
+
+    return bounds;
+  };
+
+  // adjust map view based on project coordinates
+  useEffect(() => {
+    if (mapRef.current && mapProjects.length > 0) {
+      const bounds = calculateBounds(mapProjects);
+
+      if (bounds) {
+        // it fit bounds to show all project locations with some padding
+        mapRef.current.fitBounds(bounds, {
+          padding: [20, 20],
+          maxZoom: 10,
+        });
+      } else {
+        //lets show the whole Philippines if there are no project coordinates
+        mapRef.current.setView(initialCenter, initialZoom);
+      }
+    }
+  }, [mapProjects]);
+
   useEffect(() => {
     if (contractorSlug) {
       const foundContractor = findContractorBySlug(contractorSlug);
@@ -775,14 +817,6 @@ const ContractorDetail: React.FC = () => {
                 total projects
               </p>
             </div>
-            <Button
-              variant='outline'
-              leftIcon={isExporting ? null : <Download className='w-4 h-4' />}
-              onClick={handleExportData}
-              disabled={isExporting}
-            >
-              {isExporting ? 'Exporting...' : 'Export Data'}
-            </Button>
           </div>
         )}
 
@@ -803,9 +837,9 @@ const ContractorDetail: React.FC = () => {
         )}
 
         {/* Side by Side Content View */}
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+        <div className='flex flex-wrap gap-6'>
           {/* Table View */}
-          <div className='bg-white rounded-lg shadow-md overflow-hidden mb-4'>
+          <div className='bg-white flex-[0.7] rounded-lg shadow-md overflow-hidden mb-4'>
             <InstantSearch
               indexName='bettergov_flood_control'
               searchClient={searchClient}
@@ -847,9 +881,9 @@ const ContractorDetail: React.FC = () => {
           </div>
 
           {/* Map View */}
-          <div className='bg-white rounded-lg shadow-md overflow-hidden'>
+          <div className='bg-white rounded-lg shadow-md overflow-hidden z-0 flex-[0.3]'>
             <div className='p-4'>
-              <div className='h-[800px] relative'>
+              <div className='h-[800px] relative w-full'>
                 <MapContainer
                   center={initialCenter}
                   zoom={initialZoom}
@@ -941,7 +975,7 @@ const ContractorDetail: React.FC = () => {
                 </div>
 
                 {/* Map Info Panel */}
-                <div className='absolute top-4 left-4 bg-white rounded-lg shadow-lg p-3 max-w-xs z-1000'>
+                <div className='absolute top-4 left-4 bg-white rounded-lg shadow-lg p-3 max-w-3xs z-1000'>
                   <h4 className='font-bold text-gray-900 text-sm mb-1'>
                     {contractorProfile?.company_name ||
                       contractor?.value ||
