@@ -7,11 +7,11 @@ import {
   Briefcase,
   Users,
   Plane,
-  AlertCircle,
   Compass,
 } from 'lucide-react';
 import visaData from '../../../data/visa/philippines_visa_types.json';
 import { VisaType } from '../../../types/visa';
+import { Banner } from '@bettergov/kapwa/banner';
 
 interface VisaCategory {
   id: string;
@@ -209,38 +209,17 @@ const VisaTypesPage: React.FC = () => {
           </div>
         )}
 
-        <div className='mt-10 bg-blue-50 border border-blue-200 rounded-lg p-4'>
+        <div className='mt-10'>
           <div className='flex items-start'>
-            <AlertCircle className='h-5 w-5 text-blue-500 mt-0.5 mr-2 shrink-0' />
-            <div>
-              <h3 className='font-medium text-blue-800'>Important Notice</h3>
-              <p className='text-sm text-blue-700 mt-1'>
-                This information is provided for reference only. For the most
-                accurate and up-to-date visa requirements, please consult the
-                official{' '}
-                <a
-                  href='https://immigration.gov.ph/visas/'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='underline hover:text-blue-900'
-                >
-                  Philippine Bureau of Immigration
-                </a>{' '}
-                or{' '}
-                <a
-                  href='https://dfa.gov.ph/'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='underline hover:text-blue-900'
-                >
-                  Department of Foreign Affairs
-                </a>{' '}
-                website.
-              </p>
-              <p className='text-sm text-blue-700 mt-2'>
-                Last updated: {visaData.sourceInfo.lastUpdated}
-              </p>
-            </div>
+            <Banner
+              type='info'
+              title='Important Notice'
+              description={
+                'This information is provided for reference only. For the most accurate and up-to-date visa requirements, please consult the official Philippine Bureau of Immigration or Department of Foreign Affairs website.'
+              }
+              icon={true}
+              titleSize='md'
+            />
           </div>
         </div>
       </div>
