@@ -1,6 +1,12 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import { CheckCircle2Icon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import {
+  CheckCircle2Icon,
+  LoaderIcon,
+  MenuIcon,
+  SearchIcon,
+  XIcon,
+} from 'lucide-react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Card, CardContent } from '../../components/ui/Card';
 import SearchInput from '../../components/ui/SearchInput';
 import serviceCategories from '../../data/service_categories.json';
@@ -76,6 +82,7 @@ export default function ServicesPage() {
   );
 
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const loadMoreRef = useRef<HTMLDivElement>(null);
 
   // Find selected category object
   const selectedCategory = useMemo(() => {
@@ -148,7 +155,15 @@ export default function ServicesPage() {
     });
   };
 
-  const handleLoadMore = () => {
+  const handleLoadMore = useCallback(() => {
+    // Prevent multiple triggers or loading beyond available items
+    if (
+      isLoadingMore ||
+      filteredServices.length <= currentPage * ITEMS_PER_PAGE
+    ) {
+      return;
+    }
+
     setIsLoadingMore(true);
 
     // Ensure the loading state is rendered
@@ -161,7 +176,35 @@ export default function ServicesPage() {
         setIsLoadingMore(false);
       });
     });
-  };
+  }, [isLoadingMore, filteredServices.length, currentPage, setCurrentPage]);
+
+  // Intersection Observer for infinite scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        const target = entries[0];
+        if (target.isIntersecting) {
+          handleLoadMore();
+        }
+      },
+      {
+        root: null,
+        rootMargin: '100px', // Trigger 100px before the trigger comes into view
+        threshold: 0.1,
+      }
+    );
+
+    const currentRef = loadMoreRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [handleLoadMore]);
 
   // const currentCategoryData = selectedCategory
 
@@ -523,24 +566,21 @@ export default function ServicesPage() {
               ))}
             </div>
 
-            {/* Load More Button */}
+            {/* Infinite Scroll Trigger */}
             {filteredServices.length > ITEMS_PER_PAGE * currentPage && (
-              <div className='mt-6 md:mt-8 text-center'>
-                <Button
-                  onClick={handleLoadMore}
-                  size='lg'
-                  isLoading={isLoadingMore}
-                  disabled={isLoadingMore}
-                  className='inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-3 border border-transparent text-sm md:text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary-500'
-                  aria-label={`Load more services, showing ${Math.min(
-                    filteredServices.length - currentPage * ITEMS_PER_PAGE,
-                    ITEMS_PER_PAGE
-                  )} of ${
-                    filteredServices.length - currentPage * ITEMS_PER_PAGE
-                  } remaining`}
-                >
-                  {isLoadingMore ? 'Loading...' : 'Load More Services'}
-                </Button>
+              <div
+                ref={loadMoreRef}
+                className='mt-6 md:mt-8 text-center py-8'
+                aria-hidden='true'
+              >
+                {isLoadingMore && (
+                  <div className='flex items-center justify-center space-x-2'>
+                    <LoaderIcon className='h-3 w-3 animate-spin text-gray-600' />
+                    <span className='text-xs text-gray-600'>
+                      Loading more services...
+                    </span>
+                  </div>
+                )}
               </div>
             )}
 
