@@ -75,6 +75,8 @@ export default function ServicesPage() {
     parseAsInteger.withDefault(1)
   );
 
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
   // Find selected category object
   const selectedCategory = useMemo(() => {
     if (selectedCategorySlug === 'all') return null;
@@ -119,8 +121,9 @@ export default function ServicesPage() {
     return filtered;
   }, [searchQuery, selectedCategory, selectedSubcategory]);
 
+  // Show all items from start to current page
   const paginatedServices = filteredServices.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
+    0,
     currentPage * ITEMS_PER_PAGE
   );
 
@@ -142,6 +145,21 @@ export default function ServicesPage() {
     setQueryParams({
       category: selectedCategorySlug,
       subcategory: subcategorySlug,
+    });
+  };
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+
+    // Ensure the loading state is rendered
+    // before the page number is incremented
+    requestAnimationFrame(() => {
+      setCurrentPage(prev => prev + 1);
+
+      // Reset loading state after the DOM updates
+      requestAnimationFrame(() => {
+        setIsLoadingMore(false);
+      });
     });
   };
 
@@ -508,19 +526,11 @@ export default function ServicesPage() {
             {/* Load More Button */}
             {filteredServices.length > ITEMS_PER_PAGE * currentPage && (
               <div className='mt-6 md:mt-8 text-center'>
-                <button
-                  onClick={() => {
-                    setCurrentPage(prev => prev + 1);
-                    // Focus management for better keyboard navigation
-                    setTimeout(() => {
-                      const nextPageFirstItem = document.querySelector(
-                        '[role="listitem"]:last-child'
-                      );
-                      if (nextPageFirstItem instanceof HTMLElement) {
-                        nextPageFirstItem.focus();
-                      }
-                    }, 100);
-                  }}
+                <Button
+                  onClick={handleLoadMore}
+                  size='lg'
+                  isLoading={isLoadingMore}
+                  disabled={isLoadingMore}
                   className='inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-3 border border-transparent text-sm md:text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary-500'
                   aria-label={`Load more services, showing ${Math.min(
                     filteredServices.length - currentPage * ITEMS_PER_PAGE,
@@ -529,16 +539,16 @@ export default function ServicesPage() {
                     filteredServices.length - currentPage * ITEMS_PER_PAGE
                   } remaining`}
                 >
-                  Load More Services
-                </button>
+                  {isLoadingMore ? 'Loading...' : 'Load More Services'}
+                </Button>
               </div>
             )}
 
             {/* Status message for screen readers */}
             <div className='sr-only' aria-live='polite' aria-atomic='true'>
-              Showing{' '}
-              {Math.min(paginatedServices.length, ITEMS_PER_PAGE * currentPage)}{' '}
-              of {filteredServices.length} services
+              {isLoadingMore
+                ? 'Loading more services...'
+                : `Showing ${paginatedServices.length} of ${filteredServices.length} services`}
             </div>
           </main>
         </div>
