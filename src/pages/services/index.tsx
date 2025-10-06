@@ -1,11 +1,5 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import {
-  CheckCircle2Icon,
-  LoaderIcon,
-  MenuIcon,
-  SearchIcon,
-  XIcon,
-} from 'lucide-react';
+import { CheckCircle2Icon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Card, CardContent } from '../../components/ui/Card';
 import SearchInput from '../../components/ui/SearchInput';
@@ -81,7 +75,6 @@ export default function ServicesPage() {
     parseAsInteger.withDefault(1)
   );
 
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
   // Find selected category object
@@ -156,27 +149,13 @@ export default function ServicesPage() {
   };
 
   const handleLoadMore = useCallback(() => {
-    // Prevent multiple triggers or loading beyond available items
-    if (
-      isLoadingMore ||
-      filteredServices.length <= currentPage * ITEMS_PER_PAGE
-    ) {
+    // Prevent loading beyond available items
+    if (filteredServices.length <= currentPage * ITEMS_PER_PAGE) {
       return;
     }
 
-    setIsLoadingMore(true);
-
-    // Ensure the loading state is rendered
-    // before the page number is incremented
-    requestAnimationFrame(() => {
-      setCurrentPage(prev => prev + 1);
-
-      // Reset loading state after the DOM updates
-      requestAnimationFrame(() => {
-        setIsLoadingMore(false);
-      });
-    });
-  }, [isLoadingMore, filteredServices.length, currentPage, setCurrentPage]);
+    setCurrentPage(prev => prev + 1);
+  }, [filteredServices.length, currentPage, setCurrentPage]);
 
   // Intersection Observer for infinite scroll
   useEffect(() => {
@@ -570,25 +549,15 @@ export default function ServicesPage() {
             {filteredServices.length > ITEMS_PER_PAGE * currentPage && (
               <div
                 ref={loadMoreRef}
-                className='mt-6 md:mt-8 text-center py-8'
+                className='mt-6 md:mt-8 py-8'
                 aria-hidden='true'
-              >
-                {isLoadingMore && (
-                  <div className='flex items-center justify-center space-x-2'>
-                    <LoaderIcon className='h-3 w-3 animate-spin text-gray-600' />
-                    <span className='text-xs text-gray-600'>
-                      Loading more services...
-                    </span>
-                  </div>
-                )}
-              </div>
+              />
             )}
 
             {/* Status message for screen readers */}
             <div className='sr-only' aria-live='polite' aria-atomic='true'>
-              {isLoadingMore
-                ? 'Loading more services...'
-                : `Showing ${paginatedServices.length} of ${filteredServices.length} services`}
+              Showing {paginatedServices.length} of {filteredServices.length}{' '}
+              services
             </div>
           </main>
         </div>
