@@ -136,15 +136,6 @@ const PhilippinesMap: FC = () => {
       mapRef.current?.flyTo(center, 7);
 
       const popKey = resolveRegionPopulationKey(regionName.toUpperCase());
-      console.log(popKey);
-      const populationNumber = pop2020?.regions?.[popKey]?.totalPopulation;
-
-      const populationFormatted =
-        typeof populationNumber === 'number'
-          ? populationNumber.toLocaleString('en-PH')
-          : undefined;
-
-      const popKey = resolveRegionPopulationKey(regionName.toUpperCase());
 
       const populationNumber = pop2020?.regions?.[popKey]?.totalPopulation;
 
