@@ -57,6 +57,8 @@ const wikipediaCache = new Map<
   { content?: string; summary?: string; [key: string]: unknown }
 >();
 
+const initialCenter: LatLngExpression = [12.8797, 121.774]; // Philippines center
+
 const PhilippinesMap: FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null);
   const [hoveredRegionName, setHoveredRegionName] = useState<string | null>(
@@ -75,7 +77,6 @@ const PhilippinesMap: FC = () => {
   const mapRef = useRef<L.Map>(null);
   const geoJsonLayerRef = useRef<LeafletGeoJSON | null>(null);
 
-  const initialCenter: LatLngExpression = [12.8797, 121.774]; // Philippines center
   const initialZoom = 6;
 
   // Fetch Wikipedia data
