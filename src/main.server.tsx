@@ -10,16 +10,13 @@ import Home from './pages/Home.tsx';
 // import ScrollToTop from './components/ui/ScrollToTop';
 import Footer from './components/layout/Footer';
 import Navbar from './components/layout/Navbar.tsx';
-import { Request } from 'express';
 const helmetContext = {};
 
-export async function render(req: Request) {
-  console.log(req.url);
-
+export async function render(location: string) {
   const html = ReactDOMServer.renderToString(
     <React.StrictMode>
       <HelmetProvider context={helmetContext}>
-        <StaticRouter location={req.originalUrl}>
+        <StaticRouter location={location}>
           {/* The rest of your app goes here */}
           <div className='min-h-screen flex flex-col'>
             <Navbar />
