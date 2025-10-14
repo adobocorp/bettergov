@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import LegislativeSidebar from './components/LegislativeSidebar';
-import GovernmentPageContainer from '../GovernmentPageContainer';
+import LegislativeSidebar from './components/legislative-sidebar';
+import GovernmentPageContainer from '../government-page-container';
 
 export default function LegislativePageLayout() {
   return (

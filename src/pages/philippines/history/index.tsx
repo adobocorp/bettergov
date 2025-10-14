@@ -128,15 +128,15 @@ const PhilippinesHistory: FC = () => {
                 {t('history.overview.title')}
               </h2>
               <div className='prose max-w-none'>
-                {(
-                  t('history.overview.paragraphs', {
-                    returnObjects: true,
-                  }) as string[]
-                ).map((paragraph: string, index: number) => (
-                  <p key={index} className='text-gray-800 leading-relaxed mb-4'>
-                    {paragraph}
-                  </p>
-                ))}
+                {t('history.overview.paragraphs') ??
+                  [].map((paragraph: string, index: number) => (
+                    <p
+                      key={index}
+                      className='text-gray-800 leading-relaxed mb-4'
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
               </div>
             </section>
           </div>

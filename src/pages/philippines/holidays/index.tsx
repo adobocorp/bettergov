@@ -1,3 +1,3 @@
-import PublicHolidays from './PublicHolidays';
+import PublicHolidays from './public-holidays';
 
 export default PublicHolidays;

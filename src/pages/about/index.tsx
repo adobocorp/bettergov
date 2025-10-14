@@ -60,13 +60,12 @@ const AboutPage: FC = () => {
                 </h2>
 
                 <ul className='list-disc pl-6 mb-6 text-gray-700'>
-                  {(
-                    t('mission.goalsList', { returnObjects: true }) as string[]
-                  ).map((goal: string, index: number) => (
-                    <li key={index} className='mb-2'>
-                      {goal}
-                    </li>
-                  ))}
+                  {t('mission.goalsList') ??
+                    [].map((goal: string, index: number) => (
+                      <li key={index} className='mb-2'>
+                        {goal}
+                      </li>
+                    ))}
                 </ul>
               </section>
 
@@ -144,15 +143,12 @@ const AboutPage: FC = () => {
                   {t('whyBuilding.challenges')}
                 </p>
                 <ul className='list-disc pl-6 mb-6 text-gray-700 leading-relaxed'>
-                  {(
-                    t('whyBuilding.challengesList', {
-                      returnObjects: true,
-                    }) as string[]
-                  ).map((challenge: string, index: number) => (
-                    <li key={index} className='mb-2'>
-                      {challenge}
-                    </li>
-                  ))}
+                  {t('whyBuilding.challengesList') ??
+                    [].map((challenge: string, index: number) => (
+                      <li key={index} className='mb-2'>
+                        {challenge}
+                      </li>
+                    ))}
                 </ul>
                 <p className='text-gray-700'>{t('whyBuilding.conclusion')}</p>
               </section>
@@ -207,13 +203,10 @@ const AboutPage: FC = () => {
                       {t('volunteer.technical.title')}
                     </h3>
                     <ul className='list-disc pl-6 text-gray-700'>
-                      {(
-                        t('volunteer.technical.skills', {
-                          returnObjects: true,
-                        }) as string[]
-                      ).map((skill: string, index: number) => (
-                        <li key={index}>{skill}</li>
-                      ))}
+                      {t('volunteer.technical.skills') ??
+                        [].map((skill: string, index: number) => (
+                          <li key={index}>{skill}</li>
+                        ))}
                     </ul>
                   </div>
                   <div className='bg-green-50 p-4 rounded-lg'>
@@ -221,13 +214,10 @@ const AboutPage: FC = () => {
                       {t('volunteer.content.title')}
                     </h3>
                     <ul className='list-disc pl-6 text-gray-700'>
-                      {(
-                        t('volunteer.content.skills', {
-                          returnObjects: true,
-                        }) as string[]
-                      ).map((skill: string, index: number) => (
-                        <li key={index}>{skill}</li>
-                      ))}
+                      {t('volunteer.content.skills') ??
+                        [].map((skill: string, index: number) => (
+                          <li key={index}>{skill}</li>
+                        ))}
                     </ul>
                   </div>
                 </div>
@@ -289,24 +279,20 @@ const AboutPage: FC = () => {
                 </h2>
                 <p className='mb-4 text-gray-700'>{t('bugReport.intro')}</p>
                 <ol className='list-decimal pl-6 mb-6 text-gray-700'>
-                  {(
-                    t('bugReport.steps', { returnObjects: true }) as string[]
-                  ).map((step: string, index: number) => (
-                    <li key={index}>
-                      {step}
-                      {index === 2 && (
-                        <ul className='list-disc pl-6 mt-2'>
-                          {(
-                            t('bugReport.bugDetails', {
-                              returnObjects: true,
-                            }) as string[]
-                          ).map((detail: string, detailIndex: number) => (
-                            <li key={detailIndex}>{detail}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </li>
-                  ))}
+                  {t('bugReport.steps') ??
+                    [].map((step: string, index: number) => (
+                      <li key={index}>
+                        {step}
+                        {index === 2 && (
+                          <ul className='list-disc pl-6 mt-2'>
+                            {t('bugReport.bugDetails') ??
+                              [].map((detail: string, detailIndex: number) => (
+                                <li key={detailIndex}>{detail}</li>
+                              ))}
+                          </ul>
+                        )}
+                      </li>
+                    ))}
                 </ol>
                 <div className='bg-amber-50 p-4 rounded-lg flex items-center'>
                   <MailIcon className='h-5 w-5 text-amber-600 mr-2' />
