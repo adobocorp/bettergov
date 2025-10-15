@@ -1,6 +1,6 @@
 import { Outlet, useParams } from 'react-router-dom';
-import LocalSidebar from './LocalSidebar';
-import GovernmentPageContainer from '../../GovernmentPageContainer';
+import LocalSidebar from './local-sidebar';
+import GovernmentPageContainer from '../../government-page-container';
 
 export default function LocalLayout() {
   const { region } = useParams<{ region: string }>();

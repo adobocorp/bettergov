@@ -174,15 +174,15 @@ const PhilippinesRegions: FC = () => {
                 {t('regions.sections.regionalOverview.title')}
               </h2>
               <div className='prose max-w-none'>
-                {(
-                  t('regions.sections.regionalOverview.paragraphs', {
-                    returnObjects: true,
-                  }) as string[]
-                ).map((paragraph: string, index: number) => (
-                  <p key={index} className='text-gray-800 leading-relaxed mb-4'>
-                    {paragraph}
-                  </p>
-                ))}
+                {t('regions.sections.regionalOverview.paragraphs') ??
+                  [].map((paragraph: string, index: number) => (
+                    <p
+                      key={index}
+                      className='text-gray-800 leading-relaxed mb-4'
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
               </div>
             </section>
           </div>
