@@ -2,7 +2,11 @@ import path from 'path';
 import fs from 'fs';
 import { createServer as createViteServer } from 'vite';
 import * as prettier from 'prettier';
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { dir } from 'console';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
 /**
@@ -55,7 +59,7 @@ async function getPrerenderedPages() {
     return results;
   };
 
-  const pagesDir = path.resolve(rootDir, 'src/pages');
+  const pagesDir = path.resolve(rootDir, 'src', 'pages');
   const files = traverse(pagesDir);
   const pages = files
     .map(file => path.relative(pagesDir, file).replace(/\\/g, '/'))
@@ -105,7 +109,9 @@ async function prerenderForPage(vite, template, page) {
 async function renderPage(vite, template, page) {
   try {
     const renderedTemplate = await vite.transformIndexHtml(page, template);
-    const { render } = await vite.ssrLoadModule('./src/main.server.tsx');
+    const { render } = await vite.ssrLoadModule(
+      path.resolve(rootDir, 'src', 'main.server.tsx')
+    );
     const { html: appHtml, helmetContext } = await render(page);
     const { helmet } = helmetContext;
 
@@ -141,19 +147,18 @@ async function savePrerenderedPage(page, html) {
     } else if (page.endsWith('/')) {
       page = page.slice(0, -1);
     }
-    const filePath = path.resolve(prerenderRoot, `${page}.html`);
+    const filePath = path.join(prerenderRoot, `${page}.html`);
     const basename = path.basename(filePath);
     const dirname = path.dirname(filePath);
-    const outDir = path.resolve(prerenderRoot, dirname.slice(1));
-    if (dirname !== '/') {
-      if (!fs.existsSync(outDir)) {
-        fs.mkdirSync(outDir, {
+    if (dirname !== prerenderRoot) {
+      if (!fs.existsSync(dirname)) {
+        fs.mkdirSync(dirname, {
           recursive: true,
         });
       }
     }
 
-    const finalFilePath = path.resolve(outDir, basename);
+    const finalFilePath = path.resolve(dirname, basename);
     fs.writeFileSync(finalFilePath, html, 'utf-8');
     console.log(`💾  Saved prerendered page to ${filePath}`);
   } catch (e) {
