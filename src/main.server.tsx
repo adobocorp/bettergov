@@ -3,7 +3,6 @@ import ReactDOMServer from 'react-dom/server';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App.server';
 import './index.css';
-import './i18n.server';
 const helmetContext = {};
 
 export async function render(location: string) {
