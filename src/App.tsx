@@ -87,10 +87,8 @@ import ScrollToTop from './components/ui/ScrollToTop';
 import Discord from './pages/discord';
 import SalaryGradePage from './pages/government/salary-grade/index';
 import NotFound from './pages/not-found';
-import { useSSR } from 'react-i18next';
 
 function App() {
-  useSSR({}, 'en');
   return (
     <Router>
       <NuqsAdapter>

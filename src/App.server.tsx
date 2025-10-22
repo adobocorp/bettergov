@@ -81,8 +81,9 @@ import ScrollToTop from './components/ui/ScrollToTop';
 import Discord from './pages/discord';
 import SalaryGradePage from './pages/government/salary-grade/index';
 import NotFound from './pages/not-found';
+import { withSSR } from 'react-i18next';
 
-const App = ({ location }: { location: string }) => {
+const _App = ({ location }: { location: string }) => {
   return (
     <StaticRouter location={location}>
       <NuqsAdapter>
@@ -245,5 +246,7 @@ const App = ({ location }: { location: string }) => {
     </StaticRouter>
   );
 };
+
+const App = withSSR()(_App);
 
 export default App;

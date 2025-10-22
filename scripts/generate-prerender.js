@@ -94,7 +94,6 @@ async function prerenderAll() {
 }
 
 async function prerenderForPage(vite, template, page) {
-  console.log(`📜 Prerendering for ${page} started...`);
   await renderPage(vite, template, page)
     .then(html => {
       if (html) {
@@ -114,6 +113,8 @@ async function renderPage(vite, template, page) {
     );
     const { html: appHtml, helmetContext } = await render(page);
     const { helmet } = helmetContext;
+
+    console.log(helmet.title.toString());
 
     const newHead = `
       ${helmet.title.toString()}
